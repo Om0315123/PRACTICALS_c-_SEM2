@@ -70,7 +70,7 @@ All the practicals of c++ in syllabus are pushed here
 <img src='https://github.com/user-attachments/assets/280b5b5c-daa6-4c5f-b462-ab588e9813ff'length='500' width='550'alt='practical2 output'>
 
 
- #3 practical <br>
+ #3  <br>
  <img src='https://github.com/user-attachments/assets/db977c0b-25a9-4139-8dbb-f881f0b5e835' length='500' width='550'>
 <br>
 <b>CODE</b> <br>
@@ -150,3 +150,144 @@ All the practicals of c++ in syllabus are pushed here
 <b>OUTPUT<b/> <br>
 <img src='https://github.com/user-attachments/assets/1ef34c64-a24b-4f95-ba67-dd4a4546777b' length='500' width='550'>
 <br>
+#4 WAP to Merge two ordered arrays to get a single ordered array. <br>
+<b>CODE<b> <br>
+
+    #include <iostream>
+    using namespace std;
+
+    void mergeArrays(int arr1[], int size1, int arr2[], int size2, int merged[]) {
+          int i = 0, j = 0, k = 0;
+          while (i < size1 && j < size2) {
+              if (arr1[i] < arr2[j])
+                 merged[k++] = arr1[i++];
+               else
+                  merged[k++] = arr2[j++];
+    }
+    while (i < size1)
+        merged[k++] = arr1[i++];
+    while (j < size2)
+      merged[k++] = arr2[j++];
+    }
+
+    int main() {
+        int size1, size2;
+        cout << "Enter size of first array: ";
+        cin >> size1;
+        int arr1[size1];
+        cout << "Enter elements of first sorted array: ";
+        for (int i = 0; i < size1; i++)
+            cin >> arr1[i];
+
+    cout << "Enter size of second array: ";
+    cin >> size2;
+    int arr2[size2];
+    cout << "Enter elements of second sorted array: ";
+    for (int i = 0; i < size2; i++)
+        cin >> arr2[i];
+
+    int merged[size1 + size2];
+    mergeArrays(arr1, size1, arr2, size2, merged);
+
+    cout << "Merged sorted array: ";
+    for (int i = 0; i < size1 + size2; i++)
+        cout << merged[i] << " ";
+    cout << endl;
+    
+    return 0;
+    }
+<br>
+<b>OUTPUT</b> <br>
+<img src='https://github.com/user-attachments/assets/57578a24-e8b9-4e2d-9c79-8cdf2e789972' length='500' width='550'>
+
+#5 Write a program to search a given element in a set of N numbers using Binnry scorch
+l) with recumion 2) without recursion. <br>
+<b>CODE<b> <br>
+
+    #include <iostream>
+    using namespace std;
+
+    int binarySearchRecursive(int arr[], int left, int right, int key) {
+        if (left <= right) {
+            int mid = left + (right - left) / 2;
+        if (arr[mid] == key)
+            return mid;
+        else if (arr[mid] < key)
+            return binarySearchRecursive(arr, mid + 1, right, key);
+        else
+            return binarySearchRecursive(arr, left, mid - 1, key);
+    }
+       return -1;
+    }
+
+    int binarySearchIterative(int arr[], int size, int key) {
+           int left = 0, right = size - 1;
+           while (left <= right) {
+                int mid = left + (right - left) / 2;
+           if (arr[mid] == key)
+              return mid;
+          else if (arr[mid] < key)
+              left = mid + 1;
+          else
+            right = mid - 1;
+    }
+      return -1;
+    }
+
+    int main() {
+         int size, key;
+         cout << "Enter size of array: ";
+         cin >> size;
+         int arr[size];
+         cout << "Enter sorted array elements: ";
+         for (int i = 0; i < size; i++)
+              cin >> arr[i];
+
+    cout << "Enter element to search: ";
+    cin >> key;
+
+    int recursiveResult = binarySearchRecursive(arr, 0, size - 1, key);
+    int iterativeResult = binarySearchIterative(arr, size, key);
+
+    if (recursiveResult != -1)
+        cout << "Element found at index (recursion): " << recursiveResult << endl;
+    else
+        cout << "Element not found (recursion)" << endl;
+
+    if (iterativeResult != -1)
+        cout << "Element found at index (iteration): " << iterativeResult << endl;
+    else
+        cout << "Element not found (iteration)" << endl;
+    
+       return 0;
+    }
+<b>OUTPUT</b> <br>
+ <img src='https://github.com/user-attachments/assets/c6d97d15-80ec-47e0-8305-15cd678bb53e' length='500' width ='550'>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
