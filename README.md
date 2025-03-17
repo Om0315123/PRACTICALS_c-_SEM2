@@ -201,7 +201,7 @@ All the practicals of c++ in syllabus are pushed here
 <b>OUTPUT</b> <br>
 <img src='https://github.com/user-attachments/assets/57578a24-e8b9-4e2d-9c79-8cdf2e789972' length='500' width='550'>
 
-#5 Write a program to search a given element in a set of N numbers using Binnry scorch
+#5 Write a program to search a given element in a set of N numbers using Binary search
 l) with recumion 2) without recursion. <br>
 <b>CODE<b> <br>
 
@@ -264,6 +264,39 @@ l) with recumion 2) without recursion. <br>
     }
 <b>OUTPUT</b> <br>
  <img src='https://github.com/user-attachments/assets/c6d97d15-80ec-47e0-8305-15cd678bb53e' length='500' width ='550'>
+<br>
+#6 Write a program to calculate GCD of two numbers (i) with recursion (ii) without
+recursion. <br>
+<b>CODE</b> <br>
+
+    #include <iostream>
+    using namespace std;
+
+    int gcdRecursive(int a, int b) {
+       if (b == 0)
+         return a;
+       return gcdRecursive(b, a % b);
+    }
+
+    int gcdIterative(int a, int b) {
+       while (b != 0) {
+          int temp = b;
+          b = a % b;
+          a = temp;
+    }
+    return a;
+    }
+
+    int main() {
+       int num1, num2;
+       cout << "Enter two numbers: ";
+       cin >> num1 >> num2;
+
+    cout << "GCD (Recursion): " << gcdRecursive(num1, num2) << endl;
+    cout << "GCD (Iteration): " << gcdIterative(num1, num2) << endl;
+    
+    return 0;
+    }
 
 
 
