@@ -302,6 +302,126 @@ recursion. <br>
 <img src='https://github.com/user-attachments/assets/8ea242a3-e483-4736-b341-73582c63f461' length = '500' width = '550'>
 <br>
 
+#7 Create a Matrix class. Write a menu-driven program to perform following Matrix
+operations (exceptions should be thrown by the functions if matrices passed to them
+are incompatible and handled by the main() function):
+a. Sum <br>
+b. Product <br>
+c. Transpose
+<br>
+<b>CODE</b> 
+<BR>
+      
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+
+    class Matrix {
+         vector<vector<int>> mat;
+         int rows, cols;
+
+        public:
+             Matrix(int r, int c) : rows(r), cols(c), mat(r, vector<int>(c)) {}
+
+             void inputMatrix() {
+                  cout << "Enter elements of " << rows << "x" << cols << " matrix:\n";
+                  for (int i = 0; i < rows; i++) {
+                  for (int j = 0; j < cols; j++) {
+                  cin >> mat[i][j];
+               }
+            }
+        }
+
+    void displayMatrix() {
+        for (const auto &row : mat) {
+            for (int val : row) {
+                cout << val << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    Matrix operator+(const Matrix &other) {
+        if (rows != other.rows || cols != other.cols)
+            throw invalid_argument("Matrix dimensions must match for addition");
+        Matrix result(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.mat[i][j] = mat[i][j] + other.mat[i][j];
+            }
+        }
+        return result;
+    }
+
+    Matrix operator*(const Matrix &other) {
+        if (cols != other.rows)
+            throw invalid_argument("Matrix dimensions are incompatible for multiplication");
+        Matrix result(rows, other.cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < other.cols; j++) {
+                for (int k = 0; k < cols; k++) {
+                    result.mat[i][j] += mat[i][k] * other.mat[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+    Matrix transpose() {
+        Matrix result(cols, rows);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.mat[j][i] = mat[i][j];
+            }
+        }
+        return result;
+    }
+    }
+
+    int main() {
+         int choice, r1, c1, r2, c2;
+         cout << "Enter rows and columns for first matrix: ";
+         cin >> r1 >> c1;
+         Matrix A(r1, c1);
+         A.inputMatrix();
+
+    cout << "Enter rows and columns for second matrix: ";
+    cin >> r2 >> c2;
+    Matrix B(r2, c2);
+    B.inputMatrix();
+
+    do {
+        cout << "\nMenu:\n1. Sum\n2. Product\n3. Transpose\n4. Exit\nEnter choice: ";
+        cin >> choice;
+        try {
+            if (choice == 1) {
+                Matrix sum = A + B;
+                cout << "\nSum of matrices:\n";
+                sum.displayMatrix();
+            } else if (choice == 2) {
+                Matrix product = A * B;
+                cout << "\nProduct of matrices:\n";
+                product.displayMatrix();
+            } else if (choice == 3) {
+                cout << "\nTranspose of first matrix:\n";
+                Matrix tA = A.transpose();
+                tA.displayMatrix();
+
+                cout << "\nTranspose of second matrix:\n";
+                Matrix tB = B.transpose();
+                tB.displayMatrix();
+            }
+        } catch (const exception &e) {
+            cout << "Error: " << e.what() << endl;
+        }
+    } while (choice != 4);
+    
+       return 0;
+    }
+
+<br>
+<b>OUTPUT</b> <br>
+<img src='https://github.com/user-attachments/assets/8a67c583-06c2-4fd7-9c7b-522586b0431b' length = '500' width = '550'> <br>
 
 
 
